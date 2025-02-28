@@ -144,7 +144,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
-          redirectTo: `${window.location.origin}/auth/callback`
+          redirectTo: `https://nsgnozviokikbdbwdcel.supabase.co/auth/v1/callback`,
+          queryParams: {
+            access_type: 'offline',
+            prompt: 'consent'
+          }
         }
       });
     },
@@ -263,4 +267,4 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   );
 }
 
-export const useAuth = () => useContext(AuthContext); 
+export const useAuth = () => useContext(AuthContext);
